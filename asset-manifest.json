@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/IHearU-client/static/css/main.2f3447b9.chunk.css",
+    "main.js": "/IHearU-client/static/js/main.da49f33f.chunk.js",
+    "main.js.map": "/IHearU-client/static/js/main.da49f33f.chunk.js.map",
+    "runtime-main.js": "/IHearU-client/static/js/runtime-main.85db9328.js",
+    "runtime-main.js.map": "/IHearU-client/static/js/runtime-main.85db9328.js.map",
+    "static/js/2.2415a96f.chunk.js": "/IHearU-client/static/js/2.2415a96f.chunk.js",
+    "static/js/2.2415a96f.chunk.js.map": "/IHearU-client/static/js/2.2415a96f.chunk.js.map",
+    "static/js/3.571a5658.chunk.js": "/IHearU-client/static/js/3.571a5658.chunk.js",
+    "static/js/3.571a5658.chunk.js.map": "/IHearU-client/static/js/3.571a5658.chunk.js.map",
+    "index.html": "/IHearU-client/index.html",
+    "static/css/main.2f3447b9.chunk.css.map": "/IHearU-client/static/css/main.2f3447b9.chunk.css.map",
+    "static/js/2.2415a96f.chunk.js.LICENSE.txt": "/IHearU-client/static/js/2.2415a96f.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.85db9328.js",
+    "static/js/2.2415a96f.chunk.js",
+    "static/css/main.2f3447b9.chunk.css",
+    "static/js/main.da49f33f.chunk.js"
+  ]
+}
