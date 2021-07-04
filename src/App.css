@@ -36,3 +36,24 @@
     transform: rotate(360deg);
   }
 }
+
+.appbar-toolbar {
+  justify-content: space-between;
+}
+
+.appbar-toolbar--title {
+  flex-grow: 1;
+}
+
+video {
+  width: 100vw;
+  max-height: calc(100vh - 128px);
+}
+
+.stats {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.75);
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  margin: 1rem;
+}
