@@ -28,6 +28,11 @@ html {
   flex-grow: 1;
 }
 
+.App-body {
+  display: flex;
+  flex-direction: column;
+}
+
 video {
   width: 100vw;
   max-height: calc(100vh - 256px);
@@ -46,6 +51,18 @@ video {
   min-height: 40vmin;
   pointer-events: none;
   padding: 3rem;
+  margin: 0 auto;
+}
+
+.App-logo {
+  width: 128px;
+  height: 128px;
+}
+
+.word-container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
 .typewriter-container {
@@ -54,7 +71,7 @@ video {
   align-items: center;
   direction: rtl;
   background-color: rgba(0, 0, 0, 0.1);
-  padding: 0.5rem;
+  padding: 0.5rem 1rem;
   font-size: 1.25rem;
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
   font-weight: 500;
@@ -78,4 +95,15 @@ video {
   padding: 0.5rem 1rem;
   background-color: #ffce42;
   border-radius: 1rem 1rem 0 1rem;
+}
+
+@media (orientation: landscape) {
+  .App-body {
+    flex-direction: row;
+  }
+  video {
+    width: auto;
+    max-height: calc(100vh - 64px);
+  }
+  
 }

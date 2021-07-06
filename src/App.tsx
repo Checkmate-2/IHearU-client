@@ -66,36 +66,40 @@ function App() {
           </IconButton>
         </Toolbar>
       </AppBar>
-      {(!loading && settings.showStats) && <div className="stats">
-        {/* <div>Threshold: {settings.threshold}%</div> */}
-        <div>
-          {Object.keys(getCounts(sentence.predictions)).map(word =>
-            <span key={word}>{word}: {getCounts(sentence.predictions)[word]} </span>)}
-        </div>
-      </div>}
-      <Webcam
-        ref={webcamRef}
-        style={{
-          display: loading ? "none" : "block"
-        }}
-      />
-      <SettingsDialog open={settingsOpen} handleClose={handleCloseSettings} />
-      {loading && <div className="loading-scrim">
-        <img src="/logo192.png" alt="IHearU Logo" className="App-logo"></img>
-        <h3>Loading detection models</h3>
-        <CircularProgress /></div>
-      }
-      <div className="typewriter-container">
-        <TypeWriter typing={1}>{sentence.words.join(" ")}</TypeWriter>
-        <IconButton edge="end" aria-label="settings" aria-haspopup="true" color="primary" onClick={logWords} disabled={sentence.words.length === 0}>
-          <RecordVoiceOverIcon />
-        </IconButton>
-      </div>
+      <div className="App-body">
+        {(!loading && settings.showStats) && <div className="stats">
+          {/* <div>Threshold: {settings.threshold}%</div> */}
+          <div>
+            {Object.keys(getCounts(sentence.predictions)).map(word =>
+              <span key={word}>{word}: {getCounts(sentence.predictions)[word]} </span>)}
+          </div>
+        </div>}
+        <Webcam
+          ref={webcamRef}
+          style={{
+            display: loading ? "none" : "block"
+          }}
+        />
+        <SettingsDialog open={settingsOpen} handleClose={handleCloseSettings} />
+        {loading && <div className="loading-scrim">
+          <img src="/logo192.png" alt="IHearU Logo" className="App-logo"></img>
+          <h3>Loading detection models</h3>
+          <CircularProgress /></div>
+        }
+        {!loading && <div className="word-container">
+          <div className="typewriter-container">
+            <TypeWriter typing={1}>{sentence.words.join(" ")}</TypeWriter>
+            <IconButton edge="end" aria-label="settings" aria-haspopup="true" color="primary" onClick={logWords} disabled={sentence.words.length === 0}>
+              <RecordVoiceOverIcon />
+            </IconButton>
+          </div>
 
-      <div className="word-log">
-        {sentence.log.map((sentence, i) =>
-          <p key={`${sentence}-${i}`}>{sentence.join(" ")} </p>
-        )}
+          <div className="word-log">
+            {sentence.log.map((sentence, i) =>
+              <p key={`${sentence}-${i}`}>{sentence.join(" ")} </p>
+            )}
+          </div>
+        </div>}
       </div>
     </ThemeProvider>
   );
