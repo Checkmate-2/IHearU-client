@@ -5,7 +5,6 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
@@ -65,6 +64,18 @@ export default function SettingsDialog(props: { open: boolean, handleClose: () =
                                     />
                                 }
                                 label="Show Stats"
+                            />
+
+                            <FormControlLabel
+                                control={
+                                    <Switch
+                                        checked={settings.speakAlong}
+                                        onChange={event => dispatch(settingsSlice.actions.setSpeakAlong(event.target.checked))}
+                                        name="showStats"
+                                        color="primary"
+                                    />
+                                }
+                                label="Speak along signing"
                             />
                         </FormGroup>
                     </DialogContentText>

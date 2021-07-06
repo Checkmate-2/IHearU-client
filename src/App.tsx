@@ -10,8 +10,22 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import SettingsDialog from './Settings';
 import { RootState } from './store';
 import { getCounts, loadActions, loadModel, loadVideoFeed, logWords } from './util';
-import { CircularProgress } from '@material-ui/core';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import RecordVoiceOverIcon from '@material-ui/icons/RecordVoiceOver';
+import { ThemeProvider } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
+import TypeWriter from 'react-typewriter';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      light: '#ffce42',
+      main: '#ffbd00',
+      dark: '#bd8c00',
+      contrastText: '#fff',
+    },
+  },
+});
 
 function App() {
   const webcamRef: React.Ref<Webcam> = useRef(null);
@@ -40,12 +54,13 @@ function App() {
 
 
   return (
-    <div className="App">
+    <ThemeProvider theme={theme}>
       <AppBar position="static">
         <Toolbar className="appbar-toolbar">
-          <Typography variant="h6" className="appbar-toolbar--title">
-            IHearU
-          </Typography>
+          <div className="appbar-toolbar--title">
+            <img src="/favicon.ico" alt="logo"></img>
+            <Typography variant="h6">IHearU</Typography>
+          </div>
           <IconButton edge="end" aria-label="settings" aria-haspopup="true" color="inherit" onClick={handleClickOpenSettings}>
             <SettingsIcon />
           </IconButton>
@@ -55,7 +70,7 @@ function App() {
         {/* <div>Threshold: {settings.threshold}%</div> */}
         <div>
           {Object.keys(getCounts(sentence.predictions)).map(word =>
-           <span key={word}>{word}: {getCounts(sentence.predictions)[word]} </span>)}
+            <span key={word}>{word}: {getCounts(sentence.predictions)[word]} </span>)}
         </div>
       </div>}
       <Webcam
@@ -66,24 +81,23 @@ function App() {
       />
       <SettingsDialog open={settingsOpen} handleClose={handleCloseSettings} />
       {loading && <div className="loading-scrim">
+        <img src="/logo192.png" alt="IHearU Logo" className="App-logo"></img>
         <h3>Loading detection models</h3>
         <CircularProgress /></div>
       }
-      <h3>
-        {sentence.words.map((c, i) =>
-          <span key={`${c}-${i}`}>{c} </span>
-        )}
+      <div className="typewriter-container">
+        <TypeWriter typing={1}>{sentence.words.join(" ")}</TypeWriter>
         <IconButton edge="end" aria-label="settings" aria-haspopup="true" color="primary" onClick={logWords} disabled={sentence.words.length === 0}>
           <RecordVoiceOverIcon />
         </IconButton>
-      </h3>
+      </div>
 
-      <h3>
-        {sentence.log.map((words, i) =>
-          <p key={`${words}-${i}`}>{words.join(" ")} </p>
+      <div className="word-log">
+        {sentence.log.map((sentence, i) =>
+          <p key={`${sentence}-${i}`}>{sentence.join(" ")} </p>
         )}
-      </h3>
-    </div>
+      </div>
+    </ThemeProvider>
   );
 }
 

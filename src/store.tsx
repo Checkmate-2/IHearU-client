@@ -4,13 +4,15 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 interface SettingsState {
   threshold: number,
-  showStats: boolean
+  showStats: boolean,
+  speakAlong: boolean
 }
 
 const initialState: { settings: SettingsState, sentence: { predictions: string[], words: string[], log: string[][]} } = {
   settings: {
     threshold: 85,
-    showStats: false
+    showStats: false,
+    speakAlong: true,
   },
   sentence: {predictions: [], words:[], log: []},
   
@@ -25,6 +27,9 @@ export const settingsSlice = createSlice({
   },
   setShowStats: (state, action: PayloadAction<boolean>) => {
     state.showStats = action.payload
+  },
+  setSpeakAlong: (state, action: PayloadAction<boolean>) => {
+    state.speakAlong = action.payload
   },
   },
 })

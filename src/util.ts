@@ -2,11 +2,12 @@ import { Camera } from "@mediapipe/camera_utils";
 import { Hands, NormalizedLandmarkList, Results } from "@mediapipe/hands";
 import * as tf from '@tensorflow/tfjs'
 import { dispatch, getState, sentenceSlice } from "./store";
-import * as googleTTS from 'google-tts-api';
 
 var model: tf.LayersModel;
 
 var actions: string[] = [];
+var franco: {[key:string]: string};
+
 var keypoints = [];
 var sequence: number[][] = [];
 
@@ -63,6 +64,12 @@ export async function loadActions() {
   const response = await fetch("/model.csv");
   const data = await response.text();
   actions = data.split(",");
+  await loadFranco();
+}
+
+async function loadFranco() {
+  const response = await fetch("/franco.json");
+  franco = await response.json();
 }
 
 export async function loadVideoFeed(el: HTMLVideoElement) {
@@ -119,8 +126,8 @@ function onResults(results: Results) {
       words.push(prediction);
       predictions = [];
       dispatch(sentenceSlice.actions.addWord(prediction));
-
-      // speechSynthesis.speak(new SpeechSynthesisUtterance(prediction));
+      const speakAlong = getState().settings.speakAlong;
+      if (speakAlong) speechSynthesis.speak(new SpeechSynthesisUtterance(franco[prediction]));
     }
     sequence = []
   }
@@ -128,22 +135,11 @@ function onResults(results: Results) {
 }
 
 export function logWords() {
-  const words = getState().sentence.words;
-  // speechSynthesis.speak(new SpeechSynthesisUtterance(words.join(" ")));
-  const url = googleTTS.getAudioUrl(words.join(" "), {
-    lang: 'ar',
-    slow: false,
-    host: 'https://translate.google.com',
-  });
-  console.log(url);
-  googleTTS.getAudioBase64(words.join(" "), { lang: 'ar', slow: false })
-    .then((base64) => {
-      console.log({ base64 });
-      let audioObj = new Audio(`data:audio/mp3;base64,${base64}`);
-      audioObj.oncanplaythrough = e => audioObj.play()
-    })
-    .catch(console.error);
+  const sentenceWords = getState().sentence.words;
+  const francoWords = sentenceWords.map(word => franco[word])
+  speechSynthesis.speak(new SpeechSynthesisUtterance(francoWords.join(" ")));
   dispatch(sentenceSlice.actions.logWords());
+  words = []
 }
 
 export function getCounts(arr: string[]) {

@@ -1,31 +1,11 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+html {
+  overflow-x: hidden;
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+    animation: App-logo-spin infinite 5s linear;
   }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
 }
 
 @keyframes App-logo-spin {
@@ -42,12 +22,15 @@
 }
 
 .appbar-toolbar--title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   flex-grow: 1;
 }
 
 video {
   width: 100vw;
-  max-height: calc(100vh - 128px);
+  max-height: calc(100vh - 256px);
 }
 
 .stats {
@@ -56,4 +39,43 @@ video {
   padding: 0.5rem;
   border-radius: 0.5rem;
   margin: 1rem;
+}
+
+.loading-scrim {
+  text-align: center;
+  min-height: 40vmin;
+  pointer-events: none;
+  padding: 3rem;
+}
+
+.typewriter-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  direction: rtl;
+  background-color: rgba(0, 0, 0, 0.1);
+  padding: 0.5rem;
+  font-size: 1.25rem;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 500;
+  line-height: 1.6;
+  letter-spacing: 0.0075em;
+}
+.word-log {
+  display: flex;
+  flex-direction: column;
+  direction: rtl;
+  padding: 0.5rem;
+  font-size: 1.25rem;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 500;
+  line-height: 1.6;
+  letter-spacing: 0.0075em;
+}
+
+.word-log p {
+  text-align: start;
+  padding: 0.5rem 1rem;
+  background-color: #ffce42;
+  border-radius: 1rem 1rem 0 1rem;
 }
