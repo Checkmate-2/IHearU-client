@@ -9,8 +9,9 @@ import IconButton from '@material-ui/core/IconButton';
 import SettingsIcon from '@material-ui/icons/Settings';
 import SettingsDialog from './Settings';
 import { RootState } from './store';
-import { loadActions, loadModel, loadVideoFeed } from './util';
+import { getCounts, loadActions, loadModel, loadVideoFeed, logWords } from './util';
 import { CircularProgress } from '@material-ui/core';
+import RecordVoiceOverIcon from '@material-ui/icons/RecordVoiceOver';
 
 function App() {
   const webcamRef: React.Ref<Webcam> = useRef(null);
@@ -50,7 +51,13 @@ function App() {
           </IconButton>
         </Toolbar>
       </AppBar>
-      {!loading && <div className="stats">Treshold: {settings.treshold}%</div>}
+      {(!loading && settings.showStats) && <div className="stats">
+        {/* <div>Threshold: {settings.threshold}%</div> */}
+        <div>
+          {Object.keys(getCounts(sentence.predictions)).map(word =>
+           <span key={word}>{word}: {getCounts(sentence.predictions)[word]} </span>)}
+        </div>
+      </div>}
       <Webcam
         ref={webcamRef}
         style={{
@@ -63,11 +70,19 @@ function App() {
         <CircularProgress /></div>
       }
       <h3>
-        {sentence.map((c, i) =>
+        {sentence.words.map((c, i) =>
           <span key={`${c}-${i}`}>{c} </span>
         )}
+        <IconButton edge="end" aria-label="settings" aria-haspopup="true" color="primary" onClick={logWords} disabled={sentence.words.length === 0}>
+          <RecordVoiceOverIcon />
+        </IconButton>
       </h3>
 
+      <h3>
+        {sentence.log.map((words, i) =>
+          <p key={`${words}-${i}`}>{words.join(" ")} </p>
+        )}
+      </h3>
     </div>
   );
 }
