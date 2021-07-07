@@ -115,7 +115,7 @@ function onResults(results: Results) {
   if (sequence.length === 2) {
     const prediction = makePrediction(sequence);
     const isNew = prediction !== words[words.length - 1];
-    const isStable = predictions.length > 4 && prediction === mode(predictions);
+    const isStable = predictions.length > 2 && prediction === mode(predictions);
 
     if (prediction) {
       predictions.push(prediction);
