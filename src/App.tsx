@@ -55,7 +55,7 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <AppBar position="fixed">
+      <AppBar position="static">
         <Toolbar className="appbar-toolbar">
           <div className="appbar-toolbar--title">
             <img src="/favicon.ico" alt="logo"></img>
