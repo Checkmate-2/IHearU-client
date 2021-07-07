@@ -31,6 +31,7 @@ html {
 .App-body {
   display: flex;
   flex-direction: column;
+  height: calc(100vh - 64px);
 }
 
 video {
@@ -93,17 +94,23 @@ video {
 .word-log p {
   text-align: start;
   padding: 0.5rem 1rem;
+  margin: 0.5rem;
   background-color: #ffce42;
   border-radius: 1rem 1rem 0 1rem;
 }
 
-@media (orientation: landscape) {
-  .App-body {
+@media (orientation:landscape)
+and (min-device-width: 320px) 
+and (max-device-width: 767px) {
+    .App-body {
     flex-direction: row;
   }
-  video {
+  video, .word-container {
     width: auto;
     max-height: calc(100vh - 64px);
+  }
+  .word-log {
+    overflow: auto;
   }
   
 }

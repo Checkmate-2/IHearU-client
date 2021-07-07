@@ -126,8 +126,9 @@ function onResults(results: Results) {
       words.push(prediction);
       predictions = [];
       dispatch(sentenceSlice.actions.addWord(prediction));
-      const speakAlong = getState().settings.speakAlong;
-      if (speakAlong) speechSynthesis.speak(new SpeechSynthesisUtterance(franco[prediction]));
+      // const speakAlong = getState().settings.speakAlong;
+      // if (speakAlong) 
+      speechSynthesis.speak(new SpeechSynthesisUtterance(franco[prediction]));
     }
     sequence = []
   }
@@ -135,9 +136,9 @@ function onResults(results: Results) {
 }
 
 export function logWords() {
-  const sentenceWords = getState().sentence.words;
-  const francoWords = sentenceWords.map(word => franco[word])
-  speechSynthesis.speak(new SpeechSynthesisUtterance(francoWords.join(" ")));
+  // const sentenceWords = getState().sentence.words;
+  // const francoWords = sentenceWords.map(word => franco[word])
+  // speechSynthesis.speak(new SpeechSynthesisUtterance(francoWords.join(" ")));
   dispatch(sentenceSlice.actions.logWords());
   words = []
 }
