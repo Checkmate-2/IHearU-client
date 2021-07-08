@@ -64,7 +64,7 @@ export async function loadActions() {
   const response = await fetch("/model.csv");
   const data = await response.text();
   actions = data.split(",");
-  await loadFranco();
+  // await loadFranco();
 }
 
 async function loadFranco() {
@@ -115,7 +115,7 @@ function onResults(results: Results) {
   if (sequence.length === 2) {
     const prediction = makePrediction(sequence);
     const isNew = prediction !== words[words.length - 1];
-    const isStable = predictions.length > 2 && prediction === mode(predictions);
+    const isStable = predictions.length > 4 && prediction === mode(predictions);
 
     if (prediction) {
       predictions.push(prediction);
@@ -126,9 +126,11 @@ function onResults(results: Results) {
       words.push(prediction);
       predictions = [];
       dispatch(sentenceSlice.actions.addWord(prediction));
-      // const speakAlong = getState().settings.speakAlong;
-      // if (speakAlong) 
-      speechSynthesis.speak(new SpeechSynthesisUtterance(franco[prediction]));
+      const speakAlong = getState().settings.speakAlong;
+      if (speakAlong) try {
+        // speechSynthesis.speak(new SpeechSynthesisUtterance(franco[prediction]));
+        new Audio(`/audio/${prediction}.mp3`).play();
+      } catch (error) { } 
     }
     sequence = []
   }

@@ -66,7 +66,7 @@ export default function SettingsDialog(props: { open: boolean, handleClose: () =
                                 label="Show Stats"
                             />
 
-                            {/* <FormControlLabel
+                            <FormControlLabel
                                 control={
                                     <Switch
                                         checked={settings.speakAlong}
@@ -76,7 +76,7 @@ export default function SettingsDialog(props: { open: boolean, handleClose: () =
                                     />
                                 }
                                 label="Speak along signing"
-                            /> */}
+                            />
                         </FormGroup>
                     </DialogContentText>
                 </DialogContent>
