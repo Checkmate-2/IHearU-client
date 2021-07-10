@@ -6,7 +6,7 @@ import { dispatch, getState, sentenceSlice } from "./store";
 var model: tf.LayersModel;
 
 var actions: string[] = [];
-var franco: {[key:string]: string};
+// var franco: {[key:string]: string};
 
 var keypoints = [];
 var sequence: number[][] = [];
@@ -67,10 +67,10 @@ export async function loadActions() {
   // await loadFranco();
 }
 
-async function loadFranco() {
-  const response = await fetch("/franco.json");
-  franco = await response.json();
-}
+// async function loadFranco() {
+//   const response = await fetch("/franco.json");
+//   franco = await response.json();
+// }
 
 export async function loadVideoFeed(el: HTMLVideoElement) {
   const hands = new Hands({
