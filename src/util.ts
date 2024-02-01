@@ -56,12 +56,12 @@ function extractSequence(results: Results) {
 }
 
 export async function loadModel() {
-  const modelURL = 'model/model.json';
+  const modelURL = '/IHearU-client/model/model.json';
   model = await tf.loadLayersModel(modelURL);
 }
 
 export async function loadActions() {
-  const response = await fetch("/model.csv");
+  const response = await fetch("/IHearU-client/model.csv");
   const data = await response.text();
   actions = data.split(",");
   // await loadFranco();
@@ -75,7 +75,7 @@ export async function loadActions() {
 export async function loadVideoFeed(el: HTMLVideoElement) {
   const hands = new Hands({
     locateFile: (file) => {
-      return `/hands/${file}`;
+      return `/IHearU-client/hands/${file}`;
     }
   });
   hands.setOptions({
@@ -129,7 +129,7 @@ function onResults(results: Results) {
       const speakAlong = getState().settings.speakAlong;
       if (speakAlong) try {
         // speechSynthesis.speak(new SpeechSynthesisUtterance(franco[prediction]));
-        new Audio(`/audio/${prediction}.mp3`).play();
+        new Audio(`audio/${prediction}.mp3`).play();
       } catch (error) { } 
     }
     sequence = []

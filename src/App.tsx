@@ -58,7 +58,7 @@ function App() {
       <AppBar position="static">
         <Toolbar className="appbar-toolbar">
           <div className="appbar-toolbar--title">
-            <img src="/favicon.ico" alt="logo"></img>
+            <img src="/IHearU-client/favicon.ico" alt="logo"></img>
             <Typography variant="h6">IHearU</Typography>
           </div>
           <IconButton edge="end" aria-label="settings" aria-haspopup="true" color="inherit" onClick={handleClickOpenSettings}>
@@ -82,7 +82,7 @@ function App() {
         />
         <SettingsDialog open={settingsOpen} handleClose={handleCloseSettings} />
         {loading && <div className="loading-scrim">
-          <img src="/logo192.png" alt="IHearU Logo" className="App-logo"></img>
+          <img src="/IHearU-client/logo192.png" alt="IHearU Logo" className="App-logo"></img>
           <h3>Loading detection models</h3>
           <CircularProgress /></div>
         }
